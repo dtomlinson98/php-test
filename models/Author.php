@@ -34,6 +34,11 @@
            //fetching all authors 
             $authorsData = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+              // Cast the 'id' field to string in each author data
+            foreach ($authorsData as &$author) {
+                $author['id'] = (string) $author['id'];
+            }
+
             return $authorsData;
         }
 
