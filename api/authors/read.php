@@ -42,11 +42,13 @@
         $num = count($result);
         if($num > 0) {
             //create an array to hold the author data
-            $authors_arr = array();
-            $authors_arr['data'] = $result;
+            //$authors_arr = array();
+            //$authors_arr['data'] = $result;
     
             // encode JSON and output
-            echo json_encode($authors_arr);
+            //echo json_encode($authors_arr);
+
+            echo json_encode($result);
         } else {
             //if no authors in datbase
             echo json_encode(array('message' => 'Authors Database Empty'));
