@@ -73,8 +73,9 @@
 
             //fethc row
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            //if a row fetched
+            
+            return $row;
+/*             //if a row fetched
             if ($row) {
                 //set properties
                 $this->id = $row['id'];
@@ -87,7 +88,7 @@
                 return $row;
             } else {
                 return null;
-    }
+    } */
 }
 
         // Create quote

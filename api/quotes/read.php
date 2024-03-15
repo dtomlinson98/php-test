@@ -20,8 +20,9 @@ if(isset($_GET['id'])) {
     //get and set the single quote
     $quoteData = $quote->read_single();
 
+    echo json_encode($quoteData);
     //create an array to hold the quote data
-    if ($quoteData) {
+/*     if ($quoteData) {
         // Create an array to hold the quote data
         $quote_item = array(    //value of [key]
             'id'       => $quoteData['id'],
@@ -33,7 +34,7 @@ if(isset($_GET['id'])) {
     } else {
         // Respond with Quote ID Not Found
         echo json_encode(array('message' => 'No Quotes Found'));
-    }
+    } */
 //if id not given
 } else {
     //fetch all quotes
