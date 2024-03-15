@@ -32,7 +32,7 @@ if(isset($_GET['id'])) {
         echo json_encode($quote_item);
     } else {
         // Respond with Quote ID Not Found
-        echo json_encode(array('message' => 'Quote ID Not Found'));
+        echo json_encode(array('message' => 'No Quotes Found'));
     }
 //if id not given
 } else {
