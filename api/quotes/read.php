@@ -43,7 +43,6 @@ if(isset($_GET['id'])) {
     if($num > 0) {
         //create an array to hold the quote data
         $quotes_arr = array();
-        $quotes_arr['data'] = array();
 
         //loop through each column
         while($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -57,7 +56,7 @@ if(isset($_GET['id'])) {
             );
 
             // push to array
-            array_push($quotes_arr['data'], $quote_item);
+            array_push($quotes_arr, $quote_item);
         }
 
         echo json_encode($quotes_arr);

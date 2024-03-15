@@ -39,11 +39,7 @@
         $num = count($result);
         if($num > 0) {
             //create an array to hold the category data
-            $categories_arr = array();
-            $categories_arr['data'] = $result;
-    
-            // encode JSON and output
-            echo json_encode($categories_arr);
+            echo json_encode($result);
         } else {
             // If no categories found
             echo json_encode(array('message' => 'No Categories Found'));
