@@ -60,15 +60,17 @@
             $stmt->bindParam(1, $this->id);
         
             $stmt->execute();
-
-            //fetching single author
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            if ($row) {
+           
+           //if author found
+            if ($stmt->rowCount() > 0) {
+                // Fetch author
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $this->id = $row['id'];
                 $this->author = $row['author'];
+                return true;
+                //author not found
             } else {
-                //if author not found
-                $this->author = null;
+                return false; 
             }
         }
 

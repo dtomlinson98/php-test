@@ -9,24 +9,18 @@
     //instantiate blog author object
     $author = new Author($db);
     
-    //set id from url
-    $author->id = $_GET['id'];
-    //get single author
-    $author->read_single();
+    $author->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-    //set single author
-    $singleAuthor = $author->author;
-    
-    //if author exists
-    if($singleAuthor != null) {
-        //create an array 
-        $author_item = array(
+    //single author
+    if ($author->read_single()) {
+        //author found
+        $authorItem = array(
             'id'      => $author->id,
-            'author'  => $singleAuthor
+            'author'  => $author->author
         );
-        echo json_encode($author_item);
+        echo json_encode($authorItem);
     } else {
-        //author id Not Found
-        echo json_encode(array('message' => 'author_id Not Found'));
+        //author not found
+        echo json_encode(array('message' => 'author_id Not Found.'));
     }
     ?>

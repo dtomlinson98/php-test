@@ -10,39 +10,24 @@
     $database = new Database();
     $db = $database->connect();
 
-    //instantiate blog category object
+    //instantiate category object
     $category = new Category($db);
     
     if(isset($_GET['id'])) {
-        $category->id = $_GET['id'];
-        //get single category
-        $category->read_single();
-    
-        //if categories exists
-        if($category->category != null) {
-            //create an array 
-            $category_item = array(
-                'id'      => $category->id,
-                'category'  => $category->category
-            );
-            echo json_encode($category_item);
-        } else {
-            //category id Not Found
-            echo json_encode(array('message' => 'Category ID Not Found'));
-        }
+        include_once 'read_single.php';
     //if id not given
     } else {
-        //fetch all category
+        //fetch all categories
         $result = $category->read();
     
-        //check if any category
+        //check if any categories
         $num = count($result);
         if($num > 0) {
             //create an array to hold the category data
             echo json_encode($result);
         } else {
-            // If no categories found
-            echo json_encode(array('message' => 'No Categories Found'));
+            //if no categories in database
+            echo json_encode(array('message' => 'category_id Not Found - read'));
         }
     }
-    ?>
+?>

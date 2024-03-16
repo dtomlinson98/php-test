@@ -56,10 +56,15 @@
             // Execute query 
             $stmt->execute();
 
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            // Set properties
-            $this->category = $row['category'];
+            if ($stmt->rowCount() > 0) {
+                // fetch category
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                $this->id = $row['id'];
+                $this->category = $row['category'];
+                return true;
+            } else {
+                return false; 
+            }
         }
 
         // Create category
