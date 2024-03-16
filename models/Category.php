@@ -71,7 +71,7 @@
         public function create() {
 
             if (empty($this->category)) {
-                return array("message" => "Missing Required Parameters’");
+                return array("message" => "Missing Required Parameters");
             }
 
             // Define query
@@ -92,8 +92,7 @@
                 $id = $this->conn->lastInsertId();
                 $response = array(
                     'id' => $id,
-                    'category' => $this->category,
-                    'message' => 'Category Created'
+                    'category' => $this->category
                 );
                 return $response;
             } 

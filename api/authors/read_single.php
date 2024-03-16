@@ -21,6 +21,6 @@
         echo json_encode($authorItem);
     } else {
         //author not found
-        echo json_encode(array('message' => 'author_id Not Found.'));
+        echo json_encode(array('message' => 'author_id Not Found'));
     }
     ?>

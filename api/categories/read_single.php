@@ -21,6 +21,6 @@
         echo json_encode($category_item);
     } else {
         //category not found
-        echo json_encode(array('message' => 'category_id Not Found.'));
+        echo json_encode(array('message' => 'category_id Not Found'));
     }
 ?>

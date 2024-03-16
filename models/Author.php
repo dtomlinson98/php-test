@@ -105,8 +105,7 @@
                 //then that value will be used in the response
                 $response = array(
                     'id' => $author_id,
-                    'author' => $this->author,
-                    'message' => 'Author Created');
+                    'author' => $this->author);
                 return $response;
             } else { 
                 //if execute fails then messsage will be returned

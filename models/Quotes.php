@@ -80,7 +80,7 @@
         public function create() {
 
             if (empty($this->quote) || empty($this->author_id) || empty($this->category_id)) {
-                return array("error" => "Missing Required Parameters");
+                return array("message" => "Missing Required Parameters");
             }
 
             // Define query
@@ -109,8 +109,7 @@
                     'id' => $this->id,
                     'quote' => $this->quote,
                     'author_id' => $this->author_id,
-                    'category_id' => $this->category_id,
-                    'message' => 'Quote Created'
+                    'category_id' => $this->category_id
                 );
     
                 return $response;
