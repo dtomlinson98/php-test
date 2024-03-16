@@ -63,7 +63,6 @@
 
             // Prepare query
             $stmt = $this->conn->prepare($query);
-        
 
             // Bind id
             $stmt->bindParam(1, $this->id);
@@ -75,20 +74,6 @@
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             
             return $row;
-/*             //if a row fetched
-            if ($row) {
-                //set properties
-                $this->id = $row['id'];
-                $this->quote = $row['quote'];
-                $this->author_id = $row['author_id']; 
-                $this->category_id = $row['category_id']; 
-                $this->author = $row['author']; 
-                $this->category = $row['category']; 
-                
-                return $row;
-            } else {
-                return null;
-    } */
 }
 
         // Create quote
@@ -208,7 +193,7 @@
             if ($stmt->rowCount() > 0) {
                 return true; 
             } else {
-                echo json_encode(array("message" => "Quote with ID {$this->id} does not exist"));
+                return false;
             }
         } 
     }

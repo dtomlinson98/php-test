@@ -15,26 +15,8 @@ $quote = new Quote($db);
 
 //if id set...
 if(isset($_GET['id'])) {
-    $quote->id = $_GET['id'];
-    
-    //get and set the single quote
-    $quoteData = $quote->read_single();
+    include_once 'read_single.php';
 
-    echo json_encode($quoteData);
-    //create an array to hold the quote data
-/*     if ($quoteData) {
-        // Create an array to hold the quote data
-        $quote_item = array(    //value of [key]
-            'id'       => $quoteData['id'],
-            'quote'    => $quoteData['quote'],
-            'author'   => $quoteData['author'],
-            'category' => $quoteData['category']
-        );
-        echo json_encode($quote_item);
-    } else {
-        // Respond with Quote ID Not Found
-        echo json_encode(array('message' => 'No Quotes Found'));
-    } */
 //if id not given
 } else {
     //fetch all quotes
