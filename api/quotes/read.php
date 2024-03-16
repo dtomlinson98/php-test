@@ -16,7 +16,6 @@ $quote = new Quote($db);
 //if id set...
 if(isset($_GET['id'])) {
     include_once 'read_single.php';
-
 //if id not given
 } else {
     //fetch all quotes

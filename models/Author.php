@@ -64,8 +64,12 @@
             //fetching single author
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            //set properties
-            $this->author = $row['author'];
+            if ($row) {
+                $this->author = $row['author'];
+            } else {
+                //if author not found
+                $this->author = null;
+            }
         }
 
         //create author
