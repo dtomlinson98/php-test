@@ -48,9 +48,7 @@
                 q.id,
                 q.quote,
                 a.author AS author,
-                c.category AS category,
-                q.author_id,
-                q.category_id
+                c.category AS category
               FROM
                 {$this->table} q
               LEFT JOIN

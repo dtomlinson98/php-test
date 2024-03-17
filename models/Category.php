@@ -141,7 +141,6 @@
             //if category doesn't exist delete() = false
             if (!$this->categoryExists()) {
                 return false;
-                //array("message" => "Category with ID {$this->id} not found");
             }
             //define query
             $query = "DELETE FROM {$this->table} WHERE id = :id";
