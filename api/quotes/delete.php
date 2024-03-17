@@ -25,9 +25,9 @@
 
         // delete quote
         if ($quote->delete() === true) {
-           echo json_encode(array('message' => 'Quote deleted', 'id' => $data->id));
+           echo json_encode(array('id' => $data->id));
        } else {
-           echo json_encode(array('message' => 'Quote not deleted'));
+           echo json_encode(array('message' => 'No Quotes Found'));
        }
    } else {
        echo json_encode(array('error' => 'Missing Required Parameters'));

@@ -146,6 +146,10 @@
 
         //delete author
         public function delete() {
+            //check if author exists
+            if (!$this->authorExists()) {
+                return false;
+            }
 
             //define query
             $query = "DELETE FROM {$this->table} WHERE id = :id";
@@ -160,12 +164,33 @@
             $stmt->bindParam(':id', $this->id);
 
             //execute query
-            if ($stmt->execute()) {
-                return true;
-            } else {
-
-            return false;
-            }
+            $stmt->execute();
+            
+            return true;
         }
+
+             //function checking if author id exists
+             public function authorExists() {
+                //define query
+                $query = "SELECT id FROM {$this->table} WHERE id = :id";
+                
+                //prepare stmt
+                $stmt = $this->conn->prepare($query);
+                
+                //clean data
+                $this->id = htmlspecialchars(strip_tags($this->id));
+                
+                //bind data
+                $stmt->bindParam(':id', $this->id);
+                
+                //execute query
+                $stmt->execute();
+    
+                if ($stmt->rowCount() > 0) {
+                    return true; 
+                } else {
+                    return false;
+                }
+            }
     }
 ?>

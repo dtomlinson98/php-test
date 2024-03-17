@@ -25,9 +25,9 @@
 
         // delete category
         if ($category->delete() === true) {
-           echo json_encode(array('message' => 'Category deleted!', 'id' => $data->id));
-       } elseif ($category->delete() === false) {
-           echo json_encode(array('message' => 'Category Does Not Exist.'));
+           echo json_encode(array('id' => $data->id));
+       } else {
+           echo json_encode(array('message' => 'No Categories Found'));
        }
    } else {
        echo json_encode(array('message' => 'Missing Required Parameters'));
