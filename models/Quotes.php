@@ -174,6 +174,13 @@
             if (empty($this->quote) || empty($this->author_id) || empty($this->category_id)) {
                 return array("message" => "Missing Required Parameters");
             }
+
+            //check if quote exist
+            $quoteExists = $this->quoteExists();
+
+            if (!$quoteExists) {
+                return array("message" => "No Quotes Found");
+            }
     
             //checks for author and category
             $authorExists = $this->authorExists();
