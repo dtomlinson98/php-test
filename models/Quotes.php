@@ -169,6 +169,29 @@
 
         // Update quote
         public function update() {
+
+            //if any parameters are empty
+            if (empty($this->quote) || empty($this->author_id) || empty($this->category_id)) {
+                return array("message" => "Missing Required Parameters");
+            }
+    
+            //checks for author and category
+            $authorExists = $this->authorExists();
+            $categoryExists = $this->categoryExists();
+    
+            if (!$authorExists && !$categoryExists) {
+                return array("message" => "author_id and category_id Not Found");
+            }
+    
+            //just author_id is invalid
+            if (!$authorExists) {
+                return array("message" => "author_id Not Found");
+            }
+    
+            //just category_id is invalid
+            if (!$categoryExists) {
+                return array("message" => "category_id Not Found");
+            }
             // Define query
             $query = "UPDATE {$this->table}
             SET 
@@ -193,8 +216,15 @@
             $stmt->bindParam(':id', $this->id);
 
             // Execute query
-            if($stmt->execute()) {
-                return true;
+            if ($stmt->execute()) {
+                return array(
+                    'id' => $this->id,
+                    'quote' => $this->quote,
+                    'author_id' => $this->author_id,
+                    'category_id' => $this->category_id
+                );
+            } else {
+                return array("message" => "Quote Not Updated");
             }
         }
 

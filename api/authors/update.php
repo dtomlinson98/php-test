@@ -31,10 +31,8 @@
         if($author->update()) {
             //response
             $response = array(
-                'message' => 'Author Updated',
                 'id' => $author->id,
-                'author' => $author->author
-                
+                'author' => $author->author   
             );
             echo json_encode($response);
             }

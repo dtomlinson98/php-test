@@ -31,7 +31,6 @@
         if($category->update()) {
             // Construct response
             $response = array(
-                'message' => 'Category Updated',
                 'id' => $category->id,
                 'category' => $category->category 
             );
