@@ -170,13 +170,13 @@
         // Update quote
         public function update() {
 
-            //if any parameters are empty
-            if (empty($this->quote) || empty($this->author_id) || empty($this->category_id)) {
-                return array("message" => "Missing Required Parameters");
-            }
-
             //check if quote exist
             $quoteExists = $this->quoteExists();
+
+            //if any parameters are empty
+            if (empty($this->id) || empty($this->quote) || empty($this->author_id) || empty($this->category_id)) {
+                return array("message" => "Missing Required Parameters");
+            }
 
             if (!$quoteExists) {
                 return array("message" => "No Quotes Found");

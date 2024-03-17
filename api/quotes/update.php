@@ -19,6 +19,15 @@
     //get raw posted data
     $data = json_decode(file_get_contents('php://input'));
     
+    //check for id
+    if (!isset($data->id)) {
+        
+        echo json_encode(array("message" => "Missing Required Parameters"));
+        exit;
+    }
+
+    //set id
+    $quote->id = $data->id;
 
     // if property wasn't given, missing property will be set null
     $quote->quote = isset($data->quote) ? $data->quote : null;
