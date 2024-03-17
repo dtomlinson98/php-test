@@ -21,7 +21,7 @@
     $data = json_decode(file_get_contents('php://input'));
 
     //assign data
-    $category->category = $data->category; 
+    $category->category = isset($data->category) ? $data->category : null;
 
     $response = $category->create();
     

@@ -21,9 +21,10 @@
     $data = json_decode(file_get_contents('php://input'));
 
     //assign data
-    $quote->quote = $data->quote;
-    $quote->author_id = $data->author_id;
-    $quote->category_id = $data->category_id;
+    // if property wasn't given, missing property will be set null
+    $quote->quote = isset($data->quote) ? $data->quote : null;
+    $quote->author_id = isset($data->author_id) ? $data->author_id : null;
+    $quote->category_id = isset($data->category_id) ? $data->category_id : null;
 
     $response = $quote->create();
 

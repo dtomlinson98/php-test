@@ -79,8 +79,27 @@
         // Create quote
         public function create() {
 
+            //if any parameters are not set
             if (empty($this->quote) || empty($this->author_id) || empty($this->category_id)) {
                 return array("message" => "Missing Required Parameters");
+            }
+
+            $authorExists = $this->authorExists();
+            $categoryExists = $this->categoryExists();
+
+            //if both are invalid 
+            if (!$authorExists && !$categoryExists) {
+                return array("message" => "author_id and category_id Not Found");
+            }
+            
+            //if just author invalid
+            if (!$this->authorExists()) {
+                return array("message" => "author_id Not Found");
+            }
+
+            //if jsut category invalid
+            if (!$this->categoryExists()) {
+                return array("message" => "category_id Not Found");
             }
 
             // Define query
@@ -115,6 +134,39 @@
                 return $response;
         }
     }
+
+    private function authorExists() {
+        $query = "SELECT id FROM authors WHERE id = :author_id LIMIT 1";
+        
+        //prepare
+        $stmt = $this->conn->prepare($query);
+        
+        //bind
+        $stmt->bindParam(':author_id', $this->author_id);
+        
+        //execute
+        $stmt->execute();
+        
+        //true if greater than zero else false
+        return $stmt->rowCount() > 0;
+    }
+
+    private function categoryExists() {
+        $query = "SELECT id FROM categories WHERE id = :category_id LIMIT 1";
+        
+        //prepare
+        $stmt = $this->conn->prepare($query);
+        
+        //bind
+        $stmt->bindParam(':category_id', $this->category_id);
+        
+        //execute
+        $stmt->execute();
+
+        //true if greater than zero else false
+        return $stmt->rowCount() > 0;
+    }
+
         // Update quote
         public function update() {
             // Define query

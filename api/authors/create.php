@@ -19,7 +19,7 @@ $author = new Author($db);
 $data = json_decode(file_get_contents('php://input'));
 
 // assign data
-$author->author = $data->author; 
+$author->author = isset($data->author) ? $data->author : null;
 
 // create author and get the response
 $response = $author->create();
